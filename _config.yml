@@ -2,3 +2,6 @@ plugins:
   - jekyll-seo-tag
 
 noindex: true
+
+include:
+  - content/Me/_0015822.jpeg
