@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasmin Koo - Influencer Strategist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2a2d31;
+            background: #f5f5f5;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0,0,0,.02) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 1px, transparent 1px),
+                radial-gradient(circle at 40% 20%, rgba(0,0,0,.015) 1px, transparent 1px),
+                radial-gradient(circle at 90% 40%, rgba(0,0,0,.015) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 60px 60px, 70px 70px;
+            background-position: 0 0, 40px 40px, 20px 20px, 60px 60px;
+        }
+
+        header {
+            background: #f5f5f7;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #d1d5db;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #0891b2;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #2a2d31;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #0891b2;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            padding: 140px 3rem 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: -1px;
+            color: #1f2225;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            width: min(300px, 80vw);
+            height: min(300px, 80vw);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.15);
+            background: #ffffff;
+            border: 2px dashed #0891b2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0891b2;
+            font-size: 0.9rem;
+        }
+
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        #home section {
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #0891b2;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid #d1d5db;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0891b2;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .portfolio-item {
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.2);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 400px;
+            background: #f9fafb;
+            border: 2px dashed #0891b2;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #0891b2;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2225;
+            font-weight: 500;
+        }
+
+        .brand {
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .results {
+            color: #0891b2;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .awards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .award-link {
+            display: block;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .award-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(8, 145, 178, 0.12);
+        }
+
+        .award-link:hover .award-title {
+            color: #0891b2;
+        }
+
+        .award-item {
+            padding: 2rem;
+            border-left: 4px solid #0891b2;
+            background: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .award-year {
+            font-size: 0.9rem;
+            color: #0891b2;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .award-title {
+            font-size: 1.2rem;
+            color: #1f2225;
+        }
+
+        .campaign-hero {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            color: white;
+            padding: 140px 3rem 80px;
+        }
+
+        .campaign-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .back-button:hover {
+            opacity: 1;
+        }
+
+        .campaign-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .campaign-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .campaign-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0891b2;
+            font-weight: 500;
+        }
+
+        .campaign-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-box {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #d1d5db;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0891b2;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+
+        .contact-info a {
+            color: #0891b2;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #0e7490;
+        }
+
+        footer {
+            background: #f5f5f7;
+            padding: 2rem;
+            text-align: center;
+            color: #6b7280;
+            border-top: 1px solid #d1d5db;
+        }
+
+        @media (max-width: 1100px) {
+            /* Awards/Accolades/Articles: collapse to single column, remove side borders */
+            section > div[style*="repeat(3,1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            section > div[style*="repeat(3,1fr)"] > div[style*="border-left"] {
+                border-left: none !important;
+                padding-left: 0 !important;
+                border-top: 1px solid #d1d5db;
+                padding-top: 2rem;
+            }
+            /* Collapse about hero grid */
+            .hero[style*="1fr 300px"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-text p[style*="white-space: nowrap"] {
+                white-space: normal !important;
+            }
+            /* Contact section max-width */
+            .about-content {
+                max-width: 100% !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.2rem;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+                padding: 120px 1.5rem 3rem;
+            }
+
+            .hero-image {
+                margin: 0 auto;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+                white-space: normal;
+            }
+
+            section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 2rem 0;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .portfolio-image {
+                height: 220px;
+            }
+
+            .campaign-hero {
+                padding: 120px 1.5rem 3rem;
+            }
+
+            .campaign-hero h1 {
+                font-size: 2rem;
+            }
+
+            .campaign-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .campaign-section h3 {
+                font-size: 1.4rem;
+            }
+
+            .metric-value {
+                font-size: 1.8rem;
+            }
+
+            /* Override inline grid columns for campaign content */
+            .campaign-section > div[style*="repeat(6, 1fr)"] {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+
+            .campaign-section > div[style*="repeat(5, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .campaign-section > div[style*="repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* About page */
+            section[style*="1fr 300px"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Nowrap hero text wraps on mobile */
+            p[style*="white-space: nowrap"] {
+                white-space: normal !important;
+                font-size: 0.9rem !important;
+            }
+
+            /* Contact centering */
+            .about-content[style*="text-align: center"] img {
+                width: 100%;
+            }
+
+            /* Inline grids with 4 cols collapse to 2 */
+            .campaign-section > div[style*="repeat(4, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Metrics grids */
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div style="display:flex; align-items:center; gap:1.5rem;">
+                <div class="logo" onclick="showPage('home')" style="cursor:pointer;">Yasmin Koo</div>
+                <span id="navBackTitle" style="color:#6b7280; font-size:0.95rem; display:none;"></span>
+            </div>
+            <div id="navDefault"></div>
+            <div id="navBack" style="display:none;"></div>
+            <ul id="navLinks">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('workpage')">Work</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <ul id="navLinksCampaign" style="display:none;">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('workpage')">Work</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="page active">
+        <section class="hero" style="grid-template-columns: 1fr; padding-top: 160px;">
+            <div class="hero-text">
+<p style="font-size: clamp(0.65rem, 1.3vw, 1rem); white-space: nowrap; font-weight: 600;">An award-winning strategist specializing in earned-first campaigns leveraging authentic influencer relationships to drive cultural conversation and measurable business outcomes.</p>
+            </div>
+        </section>
+
+        <section>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; border-top:1px solid #d1d5db; border-bottom:1px solid #d1d5db; margin:3rem 0; padding:3rem 0; align-items:start;">
+                <!-- Awards -->
+                <div>
+                    <h2 style="margin-bottom:1.5rem; color:#2a2d31;">Awards</h2>
+                    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:2rem;">
+                        <a href="https://www.canneslions.com/news/further-winners-announced-on-day-three-of-cannes-lions" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Cannes Grand Prix + 9 Additional Lions ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2024</div>
+                        </a>
+                        <a href="https://www.televisionacademy.com/shows/michael-cerave-cerave-moisturizing-cream" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Emmy Nomination for Outstanding Commercial ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2024</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Accolades -->
+                <div style="border-left:1px solid #d1d5db; padding-left:3rem;">
+                    <h2 style="margin-bottom:1.5rem; color:#2a2d31;">Accolades</h2>
+                    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:2rem;">
+                        <a href="https://influencermarketingawards.com/2024-winners/#rising-star" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Global Influencer Marketing Awards Rising Star of the Year Shortlist ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2024</div>
+                        </a>
+                        <a href="https://www.businessinsider.com/rising-stars-influencer-marketing-us-uk-inaugural-list-marketers-creators-2023-9" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Business Insider Rising Star in Influencer Marketing ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2023</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Articles -->
+                <div style="border-left:1px solid #d1d5db; padding-left:3rem;">
+                    <h2 style="margin-bottom:1.5rem; color:#2a2d31;">Articles</h2>
+                    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:2rem;">
+                        <a href="https://www.businessinsider.com/influencer-marketer-tips-pay-equity-creators-of-color-bipoc-brands-2024-1" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Business Insider Article Feature ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2024</div>
+                        </a>
+                        <a href="https://www.linkedin.com/pulse/what-emerging-creators-should-know-working-brands-cues-can-take-btjne/?trackingId=g1iCdmdtRDHyVcxamH5JAQ%3D%3D" target="_blank" class="stat" style="text-decoration:none; display:flex; flex-direction:column;">
+                            <div style="color:#0891b2; font-weight:600; font-size:1.05rem;">Ogilvy LinkedIn Article ↗</div>
+                            <div style="color:#9ca3af; font-size:0.8rem; margin-top:auto; padding-top:1.5rem;">2024</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <h2>Selected Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="showPage('michael')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/michael-cerave/michael-cerave.png" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Michael CeraVe 🏆</h3>
+                        <div class="brand">L'Oréal | 2024 Super Bowl</div>
+                        <div class="results">Cannes Grand Prix • Emmy Nomination • #1 Super Bowl Campaign</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('headof')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/head-of-cerave/SITE SOCIAL_63.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Heads of CeraVe 🫧</h3>
+                        <div class="brand">L'Oréal | 2025</div>
+                        <div class="results">300% sales increase • 5.3B PR impressions</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('goated')">
+                    <div class="portfolio-image" style="padding:0;overflow:hidden;"><img src="content/cerave-goated/IMG_4292.PNG" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>CeraVe GOATed 🐐</h3>
+                        <div class="brand">L'Oréal | 2025</div>
+                        <div class="results">537M PR impressions • 13% increase in product sales</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('mastercardpriceless')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/mastercard/marco-carousel-2/mc2-4.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Global Priceless 💳</h3>
+                        <div class="brand">Mastercard | 2025</div>
+                        <div class="results">20 global markets • 5 international trips</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('totalmente')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/totalmente/verizon.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>#Totalmente ☎️</h3>
+                        <div class="brand">Verizon | 2024 Super Bowl</div>
+                        <div class="results">3.6M impressions • 25% increase in share of voice</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('cocacola')">
+                    <div class="portfolio-image" style="padding:0;overflow:hidden;"><img src="content/coca-cola-move/coca-cola-thumb-opt.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>Coca-Cola Move 🥤</h3>
+                        <div class="brand">Rosalía Co-Creation | 2023</div>
+                        <div class="results">1.7B impressions • 681 media placements</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="showPage('cocacolasoccer')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/fifa-mls/coca-cola-mls-all-star-week-2023fan-kicking-ball.avif" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>Coca-Cola Soccer ⚽</h3>
+                        <div class="brand">FIFA World Cup, MLS | 2022, 2023</div>
+                        <div class="results">12.9M impressions • 12% ticket sales</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="michael" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>Michael CeraVe</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">L'Oréal | 2024 Super Bowl</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <video controls poster="content/michael-cerave/97ff57ac-4291-4dd2-9058-808fac426ea5_1400x898.jpg" style="width: 100%; border-radius: 8px;">
+                <source src="content/michael-cerave/cerave-case-study.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>"Michael CeraVe" was a first-of-its-kind, bold, immersive campaign that invited the internet into a prank-like experience, only to be debunked on America's biggest stage – the Super Bowl. The three-week campaign took people on a journey from "CeraVe, developed by Michael Cera" to "CeraVe is developed with dermatologists." The integrated campaign was executed across earned, paid and owned channels, including 60+ influencers driving a viral phenomenon before the spot even aired.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>As influencer support on this campaign, I helped execute a comprehensive social and influencer conspiracy theory that built anticipation and virality. The strategy leveraged cultural conversation and meme culture, inclusive of innovatively locking and co-creating content with the largest global meme accounts within 48 hours to achieve organic virality.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <video controls style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-4.mp4" type="video/mp4"></video>
+                <video controls style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-3.mp4" type="video/mp4"></video>
+                <video controls style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-1.mp4" type="video/mp4"></video>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Recognition & Awards</h3>
+            <p>Named #1 Super Bowl Commercial by Forbes, AdWeek, and AdAge. The campaign won the 2024 Cannes Grand Prix, received an Emmy Nomination for Best Ad, and became the 3rd most awarded campaign in the world. The collaboration with @goodnewsdog achieved the account's highest performing content ever with 14M impressions and 760K shares in 24 hours.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(6, 1fr);">
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">🏆</div>
+                    <div class="metric-label">Winner of Cannes Grand Prix, Social & Influencer</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">🎬</div>
+                    <div class="metric-label">Emmy Nomination for Outstanding Commercial</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">#1</div>
+                    <div class="metric-label">Super Bowl Campaign by Forbes, AdWeek, AdAge</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">32B</div>
+                    <div class="metric-label">Total Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">106%</div>
+                    <div class="metric-label">Revenue Increase</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">25%</div>
+                    <div class="metric-label">Sales Spike</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-6.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-6.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-3.jpg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/michael-cerave/ce-3.jpg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-5.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-5.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-8.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-8.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-4.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-4.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-7.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-7.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-10.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-10.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-12.png" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/michael-cerave/ce-12.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-1.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-1.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-11.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-11.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-9.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-9.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/michael-cerave/ce-2.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/michael-cerave/ce-2.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="headof" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>Heads of CeraVe 🫧</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">L'Oréal | 2025</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <video controls style="width: 100%; border-radius: 8px;">
+                <source src="content/head-of-cerave/OMCW0440000H_CeraVe_60_DWDLAD_AD_HeadOfCeraVe_16-9.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>Heads of CeraVe is a three-phased category launch that continued to push the boundaries of influencer-led marketing for CeraVe and L'Oréal. Building on the viral momentum of Michael CeraVe, this campaign was designed to sustain cultural relevance and drive continued brand affinity through strategic creator partnerships and earned media, with continuous analysis of audience, culture, competitors, and brand reputation to sharpen strategic positioning and fuel agile storytelling.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>As a strategist, I developed the creator brief, managed talent relationships, and oversaw content amplification to ensure cohesive messaging while preserving authentic creator voices. The approach was rooted in earned-first, go-to-market thinking — drawing on social listening insights to shape integrated creative briefs and deploy edutaining, cross-platform (Meta, YouTube, TikTok, X) celebrity partnerships.</p>
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2rem;">
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-3.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-4.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-1.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-2.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-5.mp4"></video>
+            </div>
+            <video controls style="width:100%; border-radius:8px; margin-top:1rem;">
+                <source src="content/head-of-cerave/hoc-snl.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">300%</div>
+                    <div class="metric-label">Sales Increase</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">5.3B</div>
+                    <div class="metric-label">PR Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">2.5M</div>
+                    <div class="metric-label">Engagements</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">76%</div>
+                    <div class="metric-label">Increase in New Customers</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-1.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/head-of-cerave/hoc-amp-1.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-6.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-6.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-2.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-2.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-9.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-9.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-3.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-3.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-10.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-10.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-8.png" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/head-of-cerave/hoc-amp-8.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-9b.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-9b.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-11.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-11.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-7.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-7.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-4.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-4.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/head-of-cerave/hoc-amp-5.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/head-of-cerave/hoc-amp-5.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="goated" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>CeraVe GOATed 🐐</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">L'Oréal | 2025</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <img src="content/cerave-goated/goated-campaign.jpg" style="width:100%;border-radius:8px;display:block;">
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>CeraVe GOATed is a cultural moment campaign that tapped into internet culture and sports fandom to position CeraVe as a top-tier, GOAT-level skincare brand. The campaign generated massive organic conversation, fueled by strategic influencer partnerships and a culturally resonant creative concept.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>The strategy centered on authentic creator activations that blended skincare credibility with pop culture relevance. With only 72 hours' notice, I tapped my talent network to pull together a weeklong shoot series across 5 celebrity creators — handling contracts, briefings, and talent management while staying hands-on through production and creative to drive authentic, high-impact content.</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-1.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-2.mp4"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-3.mp4"></video>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">20.6M</div>
+                    <div class="metric-label">Organic Impressions on CeraVe Owned Post</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">537M</div>
+                    <div class="metric-label">PR Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">109.9M</div>
+                    <div class="metric-label">Social Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">13%</div>
+                    <div class="metric-label">Increase in Product Sales</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-3.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-3.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-2.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-2.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-1.jpg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/cerave-goated/goated-amp-1.jpg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-4.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/cerave-goated/goated-amp-4.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-10.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-10.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-6.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-6.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-5.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-5.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-8.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-8.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-10-new.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-10-new.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-9.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-9.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-11-new.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/cerave-goated/goated-amp-11-new.mp4#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/cerave-goated/goated-amp-12.png" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/cerave-goated/goated-amp-12.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="cocacola" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>Coca-Cola Move</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">Rosalía Co-Creation | 2023</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <img src="content/coca-cola-move/coca-cola-campaign-opt.jpg" style="width:100%;border-radius:8px;display:block;">
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>Coca-Cola Move was a global campaign launching the limited-edition Coca-Cola x Rosalía collaboration. The campaign fused music, fashion, and beverage culture to create a multi-platform cultural moment — driving massive earned media and consumer engagement through a strategic blend of celebrity partnership and creator amplification.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>I developed and executed the influencer strategy, identifying creators across music, lifestyle, and fashion verticals to extend the reach of the Rosalía partnership. The campaign deployed tiered influencer activations that I managed from start to finish — from VIP seeding and exclusive event access to organic creator content — generating authentic enthusiasm across key markets globally. I also personally hosted 85 international influencers, leading them through a day's worth of planned activities and content creation in NYC.</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <img src="content/coca-cola-move/cc-1.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
+                <img src="content/coca-cola-move/cc-2.jpeg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
+                <img src="content/coca-cola-move/cc-3.jpeg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(5, 1fr);">
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">1.7B</div>
+                    <div class="metric-label">Total Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">681</div>
+                    <div class="metric-label">Media Placements</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">303</div>
+                    <div class="metric-label">Shipments of Premium Mailers</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">85</div>
+                    <div class="metric-label">International Influencers Hosted at Exclusive Event</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">Global</div>
+                    <div class="metric-label">Campaign Reach</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-1.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/coca-cola-move/cc-amp-1.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-2.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-2.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-3.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-3.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-4.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-4.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-5.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-5.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-6.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/coca-cola-move/cc-amp-6.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-7.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-7.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-8.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-8.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-9.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/coca-cola-move/cc-amp-9.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-10.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/coca-cola-move/cc-amp-10.mov#t=0.001"></video><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-11.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/coca-cola-move/cc-amp-11.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+                <div class="lightbox-item" data-src="content/coca-cola-move/cc-amp-12.jpeg" data-type="image" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/coca-cola-move/cc-amp-12.jpeg" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="totalmente" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>#Totalmente</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">Verizon | 2024 Super Bowl</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <video controls poster="content/totalmente/verizon.jpg" style="width:100%;border-radius:8px;display:block;" preload="metadata" src="content/totalmente/verizon-totalmente.mp4"></video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>Verizon's Total Wireless #Totalmente was a Super Bowl campaign celebrating authentic Hispanic culture. With only 5 days to execute, the influencer strategy was built from the ground up — identifying, briefing, and activating a diverse roster of Spanish-speaking creators whose content authentically aligned with their audience interests and creative verticals, bolstering cultural excitement around the brand's biggest moment of the year.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>I advocated for diverse creator representation and led the rapid identification and briefing of Spanish-speaking influencers within days. I ensured that co-created content was authentically aligned with audience interests and creator verticals, driving genuine cultural excitement. The campaign was shortlisted for the 2024 Influencer Marketing Awards.</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <video controls poster="content/totalmente/hero/v12044gd0000cn5a5a7og65ip6lv9d30.mov.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/totalmente/hero/v12044gd0000cn5a5a7og65ip6lv9d30.mov"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" poster="content/totalmente/hero/yai-tt1-poster.png" src="content/totalmente/hero/yai-tt1.mp4"></video>
+                <video controls poster="content/totalmente/hero/vanesa-tt1.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/totalmente/hero/vanesa-tt1.mp4"></video>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">3.6M</div>
+                    <div class="metric-label">Impressions</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">2M</div>
+                    <div class="metric-label">Reach</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">181K</div>
+                    <div class="metric-label">Engagements</div>
+                </div>
+                <div class="metric-box" style="padding: 1.25rem 0.75rem;">
+                    <div class="metric-value">25%</div>
+                    <div class="metric-label">Increase in Share of Voice</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/totalmente/hero/v12044gd0000cn775rnog65t543fucmg.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v12044gd0000cn775rnog65t543fucmg.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/vanesa-tt2.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/vanesa-tt2.mp4.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/v15044gf0000cn6kmbfog65no27p04i0.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v15044gf0000cn6kmbfog65no27p04i0.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/RPReplay_Final1708108824.MOV" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/RPReplay_Final1708108824.MOV.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/v12044gd0000cn60cgfog65mged13tu0.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v12044gd0000cn60cgfog65mged13tu0.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/v12044gd0000cnah4fnog65is3rqejpg.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v12044gd0000cnah4fnog65is3rqejpg.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/yai-tt2.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/yai-tt2.mp4.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+                <div class="lightbox-item" data-src="content/totalmente/hero/RPReplay_Final1707601709.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/RPReplay_Final1707601709.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="mastercardpriceless" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>Global Priceless</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">Mastercard | 2025</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <video controls poster="content/mastercard/mastercard-experience-cover.jpg" style="width:100%; border-radius:8px; display:block; aspect-ratio:16/9; object-fit:cover;" preload="metadata" src="content/mastercard/mastercard-experience-vo.mp4"></video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>Global Priceless is an always-on activation resonating with younger generations via creator content highlighting authentic human connection and the emotionality of shared moments. It meets new audiences where they're at, with socially native owned content that drives Mastercard affiliation with the word priceless.</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p>As the lead, I owned the globally connected approach - activating in 20+ key travel corridors, coordinating 5+ international Priceless Experience trips, and managing a diverse cohort of cross border influencers.</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                <img src="content/mastercard/marco-carousel-2/mc2-6.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
+                <video controls poster="content/mastercard/marco-carousel-2/mc2-1.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/mastercard/marco-carousel-2/mc2-8.mp4"></video>
+                <img src="content/mastercard/marco-carousel-2/mc2-5.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; object-position:right center; display:block;">
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="metric-box">
+                    <div class="metric-value">20+</div>
+                    <div class="metric-label">Global Markets</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">5+</div>
+                    <div class="metric-label">International Trips</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+                <div class="lightbox-item" data-src="content/mastercard/content-examples/lucas-ig-reel-paris.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:8px; overflow:hidden; aspect-ratio:9/16;">
+                    <img src="content/mastercard/content-examples/lucas-ig-reel-cover.png" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;">
+                        <div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="lightbox-item" data-src="content/mastercard/content-examples/mar-carousel-05.jpg" data-type="image" style="position:relative; cursor:pointer; border-radius:8px; overflow:hidden; aspect-ratio:9/16;">
+                    <img src="content/mastercard/content-examples/mar-carousel-05.jpg" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+                </div>
+                <div class="lightbox-item" data-src="content/mastercard/content-examples/borough-final.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:8px; overflow:hidden; aspect-ratio:9/16;">
+                    <img src="content/mastercard/content-examples/borough-cover.jpg" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;">
+                        <div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="lightbox-item" data-src="content/mastercard/content-examples/priceless-moments.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:8px; overflow:hidden; aspect-ratio:9/16;">
+                    <img src="content/mastercard/content-examples/priceless-moments-cover.jpg" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;">
+                        <div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="cocacolasoccer" class="page">
+        <div class="campaign-hero">
+            <div class="campaign-hero-content">
+                <h1>Coca-Cola Soccer</h1>
+                <div class="brand" style="color: rgba(255,255,255,0.9);">FIFA World Cup, MLS | 2022, 2023</div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <video controls poster="content/fifa-mls/mls-cover.png" style="width:100%; border-radius:8px; display:block; aspect-ratio:16/9; object-fit:cover;" preload="metadata" src="content/fifa-mls/mls-ima-11s.mp4"></video>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Campaign Overview</h3>
+            <p>Throughout my work on Coca-Cola, I executed a variety of activations driving brand affinity within soccer culture - from event planning and hosting, to content co-creation, to influencer management.</p>
+            <p><strong>FIFA World Cup:</strong> To kick off the FIFA World Cup 2022, we helped Coca-Cola celebrate the passionate journey of football fans by activating influencers across the global FIFA World Cup Trophy Tour and "Believing is Magic" campaign to generate brand awareness and drive attendance to local Trophy Tour events.</p>
+            <p><strong>MLS:</strong> In 2023, we partnered with Coca-Cola to drive attendance, awareness, and social buzz around the Beats, Eats & Cleats MLS event by hosting diverse influencers that represented different soccer passion verticals (fandom, gaming, pro freestyling).</p>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Influencer Strategy & Execution</h3>
+            <p><strong>FIFA World Cup:</strong> We partnered with a carefully curated mix of 13 micro to mega influencers — including two-time FIFA Women's World Cup champion Carli Lloyd, FIFA E-Sports streamer Edwin Castro, and Gen Z TikTok stars — to authentically connect Coca-Cola's campaign to passionate football communities.</p>
+            <p><strong>MLS:</strong> We activated 3 micro to macro influencers spanning the soccer fandom, eMLS gaming, and freestyling verticals, leveraging longstanding Coca-Cola creator partnerships to ensure authentic content, brand loyalty, and strong community reach across Instagram and TikTok. I supported in event planning of Beats, Cleats, and Eats, overseeing influencers and content creation throughout the weekend festivities.</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/fifa-mls/rprreplay-final.mov"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/fifa-mls/carli-lloyd-reel.mov"></video>
+                <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/fifa-mls/melissa-reel.mp4"></video>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics, FIFA World Cup</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metric-box">
+                    <div class="metric-value">12.9M</div>
+                    <div class="metric-label">Impressions</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">12%</div>
+                    <div class="metric-label">Overall Ticket Sales</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">63</div>
+                    <div class="metric-label">Pieces of Content</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Key Metrics, MLS</h3>
+            <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metric-box">
+                    <div class="metric-value">2.4M</div>
+                    <div class="metric-label">Total Reach</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">37K</div>
+                    <div class="metric-label">Total Engagements</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">5.25%</div>
+                    <div class="metric-label">Engagement Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-section">
+            <h3>Content Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem;">
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/caitlyn-ig-story-teaser.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/caitlyn-ig-story-teaser.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/castro-story-day1.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/castro-story-day1.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/elischa-ig-story-teaser.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/elischa-ig-story-teaser.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/caitlyn-v1.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/caitlyn-v1.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/castro-mexico-reel.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/castro-mexico-reel.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/elischa-reel.mp4" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/elischa-reel.mp4#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/caitlyn-v2.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/caitlyn-v2.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/carli-story.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/carli-story.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/sam-dezz-reel.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/sam-dezz-reel.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/melissa-extra.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/melissa-extra.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/shawna-gordon-reel.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/shawna-gordon-reel.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+                <div class="lightbox-item" data-src="content/fifa-mls/content-examples/rpreplay-final2.mov" data-type="video" style="position:relative; cursor:pointer; border-radius:6px; overflow:hidden; aspect-ratio:9/16;">
+                    <video style="width:100%;height:100%;object-fit:cover;pointer-events:none;" preload="metadata" src="content/fifa-mls/content-examples/rpreplay-final2.mov#t=0.001"></video>
+                    <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);pointer-events:none;"><div style="width:44px;height:44px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="black" style="pointer-events:none;"><polygon points="4,2 14,8 4,14"/></svg></div></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="about" class="page">
+        <section class="hero" style="padding-top: 140px; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start;">
+            <div class="about-content">
+                <h1 style="font-size: 3.5rem; margin-bottom: 2rem; color: #1f2225;">Hello!</h1>
+                <p>I'm Yaz, an Associate Director of Influencer Strategy at Ogilvy New York, where I lead integrated campaigns for global brands including CeraVe, Mastercard, and Coca-Cola.</p>
+                <p>Over the past eight years, I've specialized in developing earned-first, go-to-market strategies that drive cultural conversation and measurable business outcomes.</p>
+                <p>My work has been recognized with 10 Cannes Lions (including a Grand Prix), an Emmy nomination, and features in Business Insider and Forbes. I've also had the honor of being shortlisted for Global Influencer Marketing Awards' Rising Star of the Year, and winning Business Insider's Rising Star in Influencer Marketing.</p>
+                <p>I graduated as a Phi Beta Kappa member and magna cum laude from the University of California, Berkeley with a B.A. in English and Legal Studies.</p>
+            </div>
+            <div style="width: 300px; aspect-ratio: 9/16; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(8, 145, 178, 0.15);">
+                <img src="content/Me/_0015822.jpeg" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+        </section>
+
+        <section style="max-width: 1400px; margin: 0 auto; padding: 1rem 3rem 5rem;">
+            <h2>Skills</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Leadership</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Integrated Collaboration</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Influencer Strategy</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Creator Management</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Content Creation</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Campaign Execution</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Project/Team/Risk Management</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Client Relations</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Market Research</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Social Listening</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Go-To-Market Planning</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Creative Brief Development</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Competitive Intelligence</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Negotiations & Contracting</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Reporting</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">B2B & B2C Advertising</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Business Development</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Production</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Public Speaking</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Organization</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Adaptability</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Problem Solving</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Detail Oriented</span>
+                <span style="background:#ffffff; border:1px solid #d1d5db; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#2a2d31;">Thought Leadership</span>
+                <span style="background:#0891b2; border:1px solid #0891b2; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#ffffff;">CreatorIQ</span>
+                <span style="background:#0891b2; border:1px solid #0891b2; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#ffffff;">Traackr</span>
+                <span style="background:#0891b2; border:1px solid #0891b2; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#ffffff;">Onalytica</span>
+                <span style="background:#0891b2; border:1px solid #0891b2; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#ffffff;">Canva</span>
+                <span style="background:#0891b2; border:1px solid #0891b2; border-radius:999px; padding:0.4rem 1rem; font-size:0.9rem; color:#ffffff;">CapCut</span>
+            </div>
+        </section>
+
+        <section style="max-width: 1400px; margin: 0 auto; padding: 0 3rem 5rem;">
+            <h2>Awards & Recognition</h2>
+            <div class="awards-list">
+                <a href="https://www.canneslions.com/news/further-winners-announced-on-day-three-of-cannes-lions" target="_blank" class="award-item award-link">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Cannes Grand Prix + 9 Additional Lions ↗</div>
+                </a>
+                <a href="https://www.televisionacademy.com/shows/michael-cerave-cerave-moisturizing-cream" target="_blank" class="award-item award-link">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Emmy Nomination for Outstanding Commercial ↗</div>
+                </a>
+                <a href="https://influencermarketingawards.com/2024-winners/#rising-star" target="_blank" class="award-item award-link">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Global Influencer Marketing Awards Rising Star of the Year Shortlist ↗</div>
+                </a>
+                <a href="https://www.businessinsider.com/rising-stars-influencer-marketing-us-uk-inaugural-list-marketers-creators-2023-9" target="_blank" class="award-item award-link">
+                    <div class="award-year">2023</div>
+                    <div class="award-title">Business Insider Rising Star in Influencer Marketing ↗</div>
+                </a>
+                <a href="https://www.businessinsider.com/influencer-marketer-tips-pay-equity-creators-of-color-bipoc-brands-2024-1" target="_blank" class="award-item award-link">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Business Insider Article Feature ↗</div>
+                </a>
+                <a href="https://www.linkedin.com/pulse/what-emerging-creators-should-know-working-brands-cues-can-take-btjne/?trackingId=g1iCdmdtRDHyVcxamH5JAQ%3D%3D" target="_blank" class="award-item award-link">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Ogilvy LinkedIn Article ↗</div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="workpage" class="page">
+        <section style="padding-top: 140px;">
+            <h2>Selected Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="showPage('michael')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/michael-cerave/michael-cerave.png" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Michael CeraVe 🏆</h3>
+                        <div class="brand">L'Oréal | 2024 Super Bowl</div>
+                        <div class="results">Cannes Grand Prix • Emmy Nomination • #1 Super Bowl Campaign</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('headof')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/head-of-cerave/SITE SOCIAL_63.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Heads of CeraVe 🫧</h3>
+                        <div class="brand">L'Oréal | 2025</div>
+                        <div class="results">300% sales increase • 5.3B PR impressions</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('goated')">
+                    <div class="portfolio-image" style="padding:0;overflow:hidden;"><img src="content/cerave-goated/IMG_4292.PNG" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>CeraVe GOATed 🐐</h3>
+                        <div class="brand">L'Oréal | 2025</div>
+                        <div class="results">537M PR impressions • 13% increase in product sales</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('mastercardpriceless')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/mastercard/marco-carousel-2/mc2-4.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>Global Priceless 💳</h3>
+                        <div class="brand">Mastercard | 2025</div>
+                        <div class="results">20 global markets • 5 international trips</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('totalmente')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/totalmente/verizon.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+                    <div class="portfolio-content">
+                        <h3>#Totalmente ☎️</h3>
+                        <div class="brand">Verizon | 2024 Super Bowl</div>
+                        <div class="results">3.6M impressions • 25% increase in share of voice</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('cocacola')">
+                    <div class="portfolio-image" style="padding:0;overflow:hidden;"><img src="content/coca-cola-move/coca-cola-thumb-opt.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>Coca-Cola Move 🥤</h3>
+                        <div class="brand">Rosalía Co-Creation | 2023</div>
+                        <div class="results">1.7B impressions • 681 media placements</div>
+                    </div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('cocacolasoccer')">
+                    <div class="portfolio-image" style="padding:0; overflow:hidden;"><img src="content/fifa-mls/coca-cola-mls-all-star-week-2023fan-kicking-ball.avif" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="portfolio-content">
+                        <h3>Coca-Cola Soccer ⚽</h3>
+                        <div class="brand">FIFA World Cup, MLS | 2022, 2023</div>
+                        <div class="results">12.9M impressions • 12% ticket sales</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="contact" class="page">
+        <section style="padding-top: 140px; padding-bottom: 5rem; display: flex; justify-content: center; align-items: flex-start;">
+            <div style="width: min(600px, 90vw); text-align: center;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 2rem; color: #1f2225;">Contact</h1>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:yasminbkoo@gmail.com">yasminbkoo@gmail.com</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yasminkoo/" target="_blank">linkedin.com/in/yasminkoo</a></p>
+                    <p><strong>Location:</strong> New York, NY</p>
+                </div>
+                <img src="content/Me/IMG_7515.JPG" style="width:100%; border-radius:12px; display:block; margin-top:2rem; object-fit:cover;">
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2026 Yasmin Koo. All rights reserved.</p>
+        </footer>
+    </div>
+
+        <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+            <button id="lb-prev" style="position:absolute; left:1.5rem; background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; width:50px; height:50px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8249;</button>
+            <div id="lightbox-content" style="display:flex; align-items:center; justify-content:center;"></div>
+            <button id="lb-next" style="position:absolute; right:1.5rem; background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; width:50px; height:50px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8250;</button>
+        </div>
+
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const campaignTitles = {
+            michael: 'Michael CeraVe',
+            headof: 'Heads of CeraVe',
+            goated: 'CeraVe GOATed',
+            cocacola: 'Coca-Cola Move',
+            totalmente: '#Totalmente',
+            mastercardpriceless: 'Global Priceless',
+            cocacolasoccer: 'Coca-Cola Soccer'
+        };
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+            if (!_poppingState) {
+                if (location.hash !== '#' + pageId) history.pushState(null, '', '#' + pageId);
+                else history.replaceState(null, '', '#' + pageId);
+            }
+
+            // Update active nav link
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            const activeId = pageId === 'workpage' ? 'workpage' : pageId;
+            document.querySelectorAll('nav a').forEach(a => {
+                const match = a.getAttribute('onclick')?.match(/showPage\('([^']+)'\)/);
+                if (match && match[1] === activeId) a.classList.add('active');
+            });
+
+            const isCampaign = !!campaignTitles[pageId];
+            document.getElementById('navLinks').style.display = isCampaign ? 'none' : 'flex';
+            document.getElementById('navLinksCampaign').style.display = isCampaign ? 'flex' : 'none';
+            const titleEl = document.getElementById('navBackTitle');
+            titleEl.style.display = isCampaign ? 'inline' : 'none';
+            if (isCampaign) titleEl.textContent = campaignTitles[pageId];
+        }
+
+        // Restore page from URL hash on load
+        let _poppingState = false;
+        history.replaceState(null, '', location.hash || '#home');
+        const _hash = location.hash.replace('#', '');
+        if (_hash && _hash !== 'home' && document.getElementById(_hash)) showPage(_hash);
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            const hash = location.hash.replace('#', '');
+            const pageId = (hash && document.getElementById(hash)) ? hash : 'home';
+            _poppingState = true;
+            showPage(pageId);
+            _poppingState = false;
+        });
+
+        // Lightbox — div must exist before this script runs
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightbox-content');
+        const lbPrev = document.getElementById('lb-prev');
+        const lbNext = document.getElementById('lb-next');
+        let lbItems = [];
+        let lbIndex = 0;
+
+        function lbShow(index) {
+            const el = lbItems[index];
+            lightboxContent.innerHTML = '';
+            if (el.dataset.type === 'video') {
+                const v = document.createElement('video');
+                v.controls = true;
+                v.autoplay = true;
+                v.style.cssText = 'max-width:80vw; max-height:85vh; border-radius:10px;';
+                v.src = el.dataset.src;
+                lightboxContent.appendChild(v);
+            } else {
+                const img = document.createElement('img');
+                img.src = el.dataset.src;
+                img.style.cssText = 'max-width:80vw; max-height:85vh; border-radius:10px; object-fit:contain;';
+                lightboxContent.appendChild(img);
+            }
+            lbPrev.style.opacity = index === 0 ? '0.3' : '1';
+            lbNext.style.opacity = index === lbItems.length - 1 ? '0.3' : '1';
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('#lightbox') && !e.target.closest('.lightbox-item')) return;
+            const el = e.target.closest('.lightbox-item');
+            if (!el) return;
+            lbItems = Array.from(document.querySelectorAll('.lightbox-item'));
+            lbIndex = lbItems.indexOf(el);
+            lbShow(lbIndex);
+            lightbox.style.display = 'flex';
+        });
+
+        lbPrev.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (lbIndex > 0) lbShow(--lbIndex);
+        });
+
+        lbNext.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (lbIndex < lbItems.length - 1) lbShow(++lbIndex);
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target.closest('#lightbox-content') || e.target.closest('#lb-prev') || e.target.closest('#lb-next')) return;
+            lightbox.style.display = 'none';
+            const v = lightboxContent.querySelector('video');
+            if (v) v.pause();
+            lightboxContent.innerHTML = '';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (lightbox.style.display === 'none') return;
+            if (e.key === 'Escape') { lightbox.click(); }
+            if (e.key === 'ArrowLeft' && lbIndex > 0) lbShow(--lbIndex);
+            if (e.key === 'ArrowRight' && lbIndex < lbItems.length - 1) lbShow(++lbIndex);
+        });
+        </script>
+</body>
+</html>
