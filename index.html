@@ -543,8 +543,14 @@
             }
 
             /* Michael CeraVe has 6 metrics — keep 3 per row */
-            .metrics-6 {
+            .metrics-grid.metrics-6 {
                 grid-template-columns: repeat(3, 1fr) !important;
+                min-width: 0;
+            }
+
+            .metrics-grid.metrics-6 .metric-box {
+                min-width: 0;
+                word-break: break-word;
             }
 
             /* About photo: cap width on small screens */
