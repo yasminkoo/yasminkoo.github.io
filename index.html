@@ -11,10 +11,15 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #2a2d31;
+            overflow-x: hidden;
             background: #f5f5f5;
             background-image: 
                 radial-gradient(circle at 20% 50%, rgba(0,0,0,.02) 1px, transparent 1px),
@@ -91,7 +96,7 @@
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
             font-weight: 400;
             letter-spacing: -1px;
@@ -131,7 +136,7 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
             margin-bottom: 3rem;
             font-weight: 500;
             letter-spacing: -0.5px;
@@ -153,7 +158,7 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #0891b2;
@@ -291,7 +296,7 @@
         }
 
         .campaign-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 4.5vw, 3.5rem);
             margin-bottom: 1rem;
             font-weight: 400;
         }
@@ -332,7 +337,7 @@
         }
 
         .metric-value {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 600;
             color: #0891b2;
             margin-bottom: 0.5rem;
@@ -378,6 +383,24 @@
             text-align: center;
             color: #6b7280;
             border-top: 1px solid #d1d5db;
+        }
+
+        /* ISE content grids: always 3 columns at all screen sizes */
+        .ise-video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* All images and videos stay within their container */
+        img, video {
+            max-width: 100%;
+        }
+
+        /* Prevent text overflow on all text elements */
+        p, h1, h2, h3, li, .award-title, .results, .brand {
+            overflow-wrap: break-word;
         }
 
         @media (max-width: 1100px) {
@@ -434,7 +457,6 @@
             }
 
             .hero-text h1 {
-                font-size: 1.8rem;
                 white-space: normal;
             }
 
@@ -446,10 +468,6 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
                 padding: 2rem 0;
-            }
-
-            .stat-number {
-                font-size: 2rem;
             }
 
             .portfolio-grid {
@@ -465,20 +483,12 @@
                 padding: 120px 1.5rem 3rem;
             }
 
-            .campaign-hero h1 {
-                font-size: 2rem;
-            }
-
             .campaign-section {
                 padding: 2rem 1.5rem;
             }
 
             .campaign-section h3 {
                 font-size: 1.4rem;
-            }
-
-            .metric-value {
-                font-size: 1.8rem;
             }
 
             /* Override inline grid columns for campaign content */
@@ -518,6 +528,50 @@
             /* Metrics grids */
             .metrics-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* ISE grids: stay 3 columns, tighter gap */
+            .ise-video-grid {
+                gap: 0.5rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0 0.75rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                padding: 110px 1rem 2rem;
+            }
+
+            section {
+                padding: 1.5rem 1rem;
+            }
+
+            .campaign-hero {
+                padding: 110px 1rem 2rem;
+            }
+
+            .campaign-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .campaign-section p,
+            .about-content p {
+                font-size: 0.95rem;
+            }
+
+            .campaign-section h3 {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -694,7 +748,7 @@
             <h3>Influencer Strategy & Execution</h3>
             <p>As influencer support on this campaign, I helped execute a comprehensive social and influencer conspiracy theory that built anticipation and virality. The strategy leveraged cultural conversation and meme culture, inclusive of innovatively locking and co-creating content with the largest global meme accounts within 48 hours to achieve organic virality.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <video controls preload="none" poster="content/michael-cerave/video-4.mp4.png" style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-4.mp4" type="video/mp4"></video>
                 <video controls preload="none" poster="content/michael-cerave/video-3.mp4.png" style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-3.mp4" type="video/mp4"></video>
                 <video controls preload="none" poster="content/michael-cerave/video-1.mp4.png" style="width: 100%; border-radius: 8px; aspect-ratio: 9/16; object-fit: cover;"><source src="content/michael-cerave/video-1.mp4" type="video/mp4"></video>
@@ -858,7 +912,7 @@
         <div class="campaign-section">
             <h3>Influencer Strategy & Execution</h3>
             <p>The strategy centered on authentic creator activations that blended skincare credibility with pop culture relevance. With only 72 hours' notice, I tapped my talent network to pull together a weeklong shoot series across 5 celebrity creators — handling contracts, briefings, and talent management while staying hands-on through production and creative to drive authentic, high-impact content.</p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <video controls preload="metadata" poster="content/cerave-goated/goated-1.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-1.mp4"></video>
                 <video controls preload="metadata" poster="content/cerave-goated/goated-2.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-2.mp4"></video>
                 <video controls preload="metadata" poster="content/cerave-goated/goated-3.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/cerave-goated/goated-3.mp4"></video>
@@ -930,7 +984,7 @@
         <div class="campaign-section">
             <h3>Influencer Strategy & Execution</h3>
             <p>I developed and executed the influencer strategy, identifying creators across music, lifestyle, and fashion verticals to extend the reach of the Rosalía partnership. The campaign deployed tiered influencer activations that I managed from start to finish — from VIP seeding and exclusive event access to organic creator content — generating authentic enthusiasm across key markets globally. I also personally hosted 85 international influencers, leading them through a day's worth of planned activities and content creation in NYC.</p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <img src="content/coca-cola-move/cc-1.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
                 <img src="content/coca-cola-move/cc-2.jpeg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
                 <img src="content/coca-cola-move/cc-3.jpeg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
@@ -1006,7 +1060,7 @@
         <div class="campaign-section">
             <h3>Influencer Strategy & Execution</h3>
             <p>I advocated for diverse creator representation and led the rapid identification and briefing of Spanish-speaking influencers within days. I ensured that co-created content was authentically aligned with audience interests and creator verticals, driving genuine cultural excitement. The campaign was shortlisted for the 2024 Influencer Marketing Awards.</p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <video controls poster="content/totalmente/hero/v12044gd0000cn5a5a7og65ip6lv9d30.mov.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/totalmente/hero/v12044gd0000cn5a5a7og65ip6lv9d30.mov"></video>
                 <video controls style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" poster="content/totalmente/hero/yai-tt1-poster.png" src="content/totalmente/hero/yai-tt1.mp4"></video>
                 <img src="content/totalmente/hero/vanesa-tt1.mp4.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;">
@@ -1074,7 +1128,7 @@
         <div class="campaign-section">
             <h3>Influencer Strategy & Execution</h3>
             <p>As the lead, I owned the globally connected approach - activating in 20+ key travel corridors, coordinating 5+ international Priceless Experience trips, and managing a diverse cohort of cross border influencers.</p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <img src="content/mastercard/marco-carousel-2/mc2-6.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
                 <video controls poster="content/mastercard/marco-carousel-2/mc2-1.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" preload="metadata" src="content/mastercard/marco-carousel-2/mc2-8.mp4"></video>
                 <img src="content/mastercard/marco-carousel-2/mc2-5.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; object-position:right center; display:block;">
@@ -1156,7 +1210,7 @@
             <h3>Influencer Strategy & Execution</h3>
             <p><strong>FIFA World Cup:</strong> We partnered with a carefully curated mix of 13 micro to mega influencers — including two-time FIFA Women's World Cup champion Carli Lloyd, FIFA E-Sports streamer Edwin Castro, and Gen Z TikTok stars — to authentically connect Coca-Cola's campaign to passionate football communities.</p>
             <p><strong>MLS:</strong> We activated 3 micro to macro influencers spanning the soccer fandom, eMLS gaming, and freestyling verticals, leveraging longstanding Coca-Cola creator partnerships to ensure authentic content, brand loyalty, and strong community reach across Instagram and TikTok. I supported in event planning of Beats, Cleats, and Eats, overseeing influencers and content creation throughout the weekend festivities.</p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+            <div class="ise-video-grid">
                 <video controls preload="metadata" poster="content/fifa-mls/rprreplay-final.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/fifa-mls/rprreplay-final.mp4"></video>
                 <video controls preload="metadata" poster="content/fifa-mls/carli-lloyd-reel.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/fifa-mls/carli-lloyd-reel.mp4"></video>
                 <video controls preload="metadata" poster="content/fifa-mls/melissa-reel.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/fifa-mls/melissa-reel.mp4"></video>
