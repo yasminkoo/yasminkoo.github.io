@@ -427,6 +427,11 @@
             margin-top: 2rem;
         }
 
+        /* Global Priceless metrics: always 2 per row at all screen sizes */
+        .metrics-grid.metrics-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         /* All images and videos stay within their container */
         img, video {
             max-width: 100%;
@@ -599,13 +604,30 @@
                 flex: 0 0 calc(50% - 1rem) !important;
             }
 
-            /* 3-col stays 3-col, tight gap */
-            .metrics-grid.metrics-3 { gap: 0.5rem !important; }
+            /* 3-col stays 3-col on mobile (Soccer metrics) */
+            .metrics-grid.metrics-3 {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.5rem !important;
+            }
             .metrics-grid.metrics-3 .metric-box {
-                flex: 0 0 calc(33.333% - 0.333rem) !important;
                 padding: 0.75rem 0.5rem !important;
                 overflow-wrap: normal !important;
                 word-break: normal !important;
+            }
+
+            /* ISE grids: always 3-col on mobile */
+            .ise-video-grid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.5rem !important;
+            }
+
+            /* 2-col stays 2-col on same line (Global Priceless) */
+            .metrics-grid.metrics-2 {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
             }
 
             /* Totalmente content examples — flex for centering, 3-col */
