@@ -593,14 +593,21 @@
                 word-break: normal !important;
             }
 
-            /* 5-col → 3-col on mobile (last 2 auto-centered) */
-            .metrics-grid.metrics-5 { gap: 0.5rem !important; }
+            /* 5-col → 3+2 on mobile: 6-col grid, each box spans 2, last 2 centered */
+            .metrics-grid.metrics-5 {
+                display: grid !important;
+                grid-template-columns: repeat(6, 1fr) !important;
+                gap: 0.5rem !important;
+            }
             .metrics-grid.metrics-5 .metric-box {
-                flex: 0 0 calc(33.333% - 0.333rem) !important;
+                grid-column: span 2 !important;
                 padding: 0.75rem 0.5rem !important;
                 overflow-wrap: normal !important;
                 word-break: normal !important;
             }
+            /* Center the last 2 items: leave col 1 and col 6 empty */
+            .metrics-grid.metrics-5 .metric-box:nth-child(4) { grid-column: 2 / span 2 !important; }
+            .metrics-grid.metrics-5 .metric-box:nth-child(5) { grid-column: 4 / span 2 !important; }
 
             /* 4-col → 2-col grid on mobile */
             .metrics-grid.metrics-4 {
