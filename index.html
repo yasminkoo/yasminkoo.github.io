@@ -342,29 +342,23 @@
         }
 
         .metrics-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Metric box flex widths by column count */
-        .metrics-grid .metric-box       { flex: 0 0 calc(50% - 1rem); }
-        .metrics-6 .metric-box          { flex: 0 0 calc(16.666% - 1.667rem); }
-        .metrics-5 .metric-box          { flex: 0 0 calc(20% - 1.6rem); }
-        .metrics-4 .metric-box          { flex: 0 0 calc(25% - 1.5rem); }
-        .metrics-3 .metric-box          { flex: 0 0 calc(33.333% - 1.333rem); }
-
-        .totalmente-content-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.75rem;
+        .metrics-6 { grid-template-columns: repeat(6, 1fr); }
+        .metrics-5 { grid-template-columns: repeat(5, 1fr); }
+        .metrics-4 { grid-template-columns: repeat(4, 1fr); }
+        .metrics-3 { grid-template-columns: repeat(3, 1fr); }
+        .metrics-grid:not(.metrics-3):not(.metrics-4):not(.metrics-5):not(.metrics-6) {
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .totalmente-content-grid > * {
-            flex: 0 0 calc(25% - 0.5625rem);
+        .totalmente-content-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
         }
 
         .metric-box {
@@ -427,15 +421,10 @@
 
         /* ISE content grids: always 3 columns at all screen sizes */
         .ise-video-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 2rem;
-        }
-
-        .ise-video-grid > * {
-            flex: 0 0 calc(33.333% - 0.667rem);
         }
 
         /* All images and videos stay within their container */
@@ -575,9 +564,16 @@
                 grid-template-columns: repeat(2, 1fr) !important;
             }
 
-            /* Metrics: default 2-col on mobile */
+            /* Switch metrics to flex on mobile for centering of odd last rows */
+            .metrics-grid {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            /* Default: 2-col on mobile */
             .metrics-grid .metric-box {
-                flex: 0 0 calc(50% - 1rem) !important;
+                flex: 0 0 calc(50% - 1rem);
             }
 
             /* 6-col → 3-col, tight gap, no word breaks */
@@ -612,14 +608,14 @@
                 word-break: normal !important;
             }
 
-            /* Totalmente content examples — 3 per row on mobile */
+            /* Totalmente content examples — flex for centering, 3-col */
+            .totalmente-content-grid {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             .totalmente-content-grid > * {
                 flex: 0 0 calc(33.333% - 0.5rem) !important;
-            }
-
-            /* ISE grids: stay 3-col, tight gap */
-            .ise-video-grid > * {
-                flex: 0 0 calc(33.333% - 0.333rem) !important;
             }
 
             /* About photo: cap width on small screens */
@@ -916,9 +912,13 @@
         </div>
 
         <div class="campaign-section">
-            <video controls playsinline style="width: 100%; border-radius: 8px;">
-                <source src="content/head-of-cerave/OMCW0440000H_CeraVe_60_DWDLAD_AD_HeadOfCeraVe_16-9.mp4" type="video/mp4">
-            </video>
+            <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden; cursor:pointer;" onclick="var v=this.querySelector('video');var img=this.querySelector('img');var btn=this.querySelector('.hoc-main-play');img.style.display='none';btn.style.display='none';v.style.display='block';v.play();">
+                <img src="content/head-of-cerave/hoc-main.mp4.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+                <div class="hoc-main-play" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                    <div style="width:60px;height:60px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 16 16" fill="black"><polygon points="4,2 14,8 4,14"/></svg></div>
+                </div>
+                <video controls playsinline preload="none" style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;" src="content/head-of-cerave/OMCW0440000H_CeraVe_60_DWDLAD_AD_HeadOfCeraVe_16-9.mp4"></video>
+            </div>
         </div>
 
         <div class="campaign-section">
