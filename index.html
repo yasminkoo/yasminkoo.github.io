@@ -335,22 +335,29 @@
         }
 
         .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .metrics-6 {
-            grid-template-columns: repeat(6, 1fr);
-        }
-
-        .metrics-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
+        /* Metric box flex widths by column count */
+        .metrics-grid .metric-box       { flex: 0 0 calc(50% - 1rem); }
+        .metrics-6 .metric-box          { flex: 0 0 calc(16.666% - 1.667rem); }
+        .metrics-5 .metric-box          { flex: 0 0 calc(20% - 1.6rem); }
+        .metrics-4 .metric-box          { flex: 0 0 calc(25% - 1.5rem); }
+        .metrics-3 .metric-box          { flex: 0 0 calc(33.333% - 1.333rem); }
 
         .totalmente-content-grid {
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .totalmente-content-grid > * {
+            flex: 0 0 calc(25% - 0.5625rem);
         }
 
         .metric-box {
@@ -413,10 +420,15 @@
 
         /* ISE content grids: always 3 columns at all screen sizes */
         .ise-video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
+        }
+
+        .ise-video-grid > * {
+            flex: 0 0 calc(33.333% - 0.667rem);
         }
 
         /* All images and videos stay within their container */
@@ -556,38 +568,51 @@
                 grid-template-columns: repeat(2, 1fr) !important;
             }
 
-            /* Metrics grids */
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
+            /* Metrics: default 2-col on mobile */
+            .metrics-grid .metric-box {
+                flex: 0 0 calc(50% - 1rem) !important;
             }
 
-            /* Michael CeraVe has 6 metrics — keep 3 per row */
-            .metrics-grid.metrics-6 {
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 0.5rem !important;
-            }
-
+            /* 6-col → 3-col, tight gap, no word breaks */
+            .metrics-grid.metrics-6 { gap: 0.5rem !important; }
             .metrics-grid.metrics-6 .metric-box {
+                flex: 0 0 calc(33.333% - 0.333rem) !important;
                 padding: 0.75rem 0.5rem !important;
                 overflow-wrap: normal !important;
                 word-break: normal !important;
             }
 
-            /* Soccer/other 3-col metrics — keep 3 per row */
-            .metrics-grid.metrics-3 {
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 0.5rem !important;
+            /* 5-col → 3-col on mobile (last 2 auto-centered) */
+            .metrics-grid.metrics-5 { gap: 0.5rem !important; }
+            .metrics-grid.metrics-5 .metric-box {
+                flex: 0 0 calc(33.333% - 0.333rem) !important;
+                padding: 0.75rem 0.5rem !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
             }
 
+            /* 4-col → 2-col on mobile */
+            .metrics-grid.metrics-4 .metric-box {
+                flex: 0 0 calc(50% - 1rem) !important;
+            }
+
+            /* 3-col stays 3-col, tight gap */
+            .metrics-grid.metrics-3 { gap: 0.5rem !important; }
             .metrics-grid.metrics-3 .metric-box {
+                flex: 0 0 calc(33.333% - 0.333rem) !important;
                 padding: 0.75rem 0.5rem !important;
                 overflow-wrap: normal !important;
                 word-break: normal !important;
             }
 
             /* Totalmente content examples — 3 per row on mobile */
-            .totalmente-content-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
+            .totalmente-content-grid > * {
+                flex: 0 0 calc(33.333% - 0.5rem) !important;
+            }
+
+            /* ISE grids: stay 3-col, tight gap */
+            .ise-video-grid > * {
+                flex: 0 0 calc(33.333% - 0.333rem) !important;
             }
 
             /* About photo: cap width on small screens */
@@ -596,10 +621,6 @@
                 max-width: 300px !important;
             }
 
-            /* ISE grids: stay 3 columns, tighter gap */
-            .ise-video-grid {
-                gap: 0.5rem !important;
-            }
         }
 
         @media (max-width: 480px) {
@@ -908,12 +929,12 @@
                 <video controls playsinline preload="metadata" poster="content/head-of-cerave/hoc-2.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-2.mp4"></video>
                 <video controls playsinline preload="metadata" poster="content/head-of-cerave/hoc-5.mp4.png" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover;" src="content/head-of-cerave/hoc-5.mp4"></video>
             </div>
-            <video controls playsinline preload="metadata" poster="content/head-of-cerave/hoc-snl.mp4.png" style="width:100%; border-radius:8px; margin-top:1rem;" src="content/head-of-cerave/hoc-snl.mp4"></video>
+            <video controls playsinline preload="metadata" poster="content/head-of-cerave/hoc-snl.mp4.png" style="width:100%; border-radius:8px; margin-top:1rem; aspect-ratio:16/9;" src="content/head-of-cerave/hoc-snl.mp4"></video>
         </div>
 
         <div class="campaign-section">
             <h3>Key Metrics</h3>
-            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="metrics-grid metrics-4">
                 <div class="metric-box" style="padding: 1.25rem 0.75rem;">
                     <div class="metric-value">300%</div>
                     <div class="metric-label">Sales Increase</div>
@@ -985,7 +1006,7 @@
 
         <div class="campaign-section">
             <h3>Key Metrics</h3>
-            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="metrics-grid metrics-4">
                 <div class="metric-box" style="padding: 1.25rem 0.75rem;">
                     <div class="metric-value">20.6M</div>
                     <div class="metric-label">Organic Impressions on CeraVe Owned Post</div>
@@ -1057,7 +1078,7 @@
 
         <div class="campaign-section">
             <h3>Key Metrics</h3>
-            <div class="metrics-grid" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="metrics-grid metrics-5">
                 <div class="metric-box" style="padding: 1.25rem 0.75rem;">
                     <div class="metric-value">1.7B</div>
                     <div class="metric-label">Total Impressions</div>
@@ -1133,7 +1154,7 @@
 
         <div class="campaign-section">
             <h3>Key Metrics</h3>
-            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="metrics-grid metrics-4">
                 <div class="metric-box" style="padding: 1.25rem 0.75rem;">
                     <div class="metric-value">3.6M</div>
                     <div class="metric-label">Impressions</div>
@@ -1155,7 +1176,7 @@
 
         <div class="campaign-section">
             <h3>Content Examples</h3>
-            <div class="totalmente-content-grid" style="display: grid; gap: 0.75rem;">
+            <div class="totalmente-content-grid">
                 <div class="lightbox-item" data-src="content/totalmente/hero/v12044gd0000cn775rnog65t543fucmg.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v12044gd0000cn775rnog65t543fucmg.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
                 <div class="lightbox-item" data-src="content/totalmente/hero/vanesa-tt2.mp4" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/vanesa-tt2.mp4.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
                 <div class="lightbox-item" data-src="content/totalmente/hero/v15044gf0000cn6kmbfog65no27p04i0.mov" data-type="video" style="position:relative; aspect-ratio:9/16; border-radius:6px; overflow:hidden; cursor:pointer;"><img src="content/totalmente/hero/v15044gf0000cn6kmbfog65no27p04i0.mov.png" style="width:100%;height:100%;object-fit:cover;pointer-events:none;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;background:rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">▶</div></div></div>
@@ -1201,7 +1222,7 @@
 
         <div class="campaign-section">
             <h3>Key Metrics</h3>
-            <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="metrics-grid metrics-2">
                 <div class="metric-box">
                     <div class="metric-value">20+</div>
                     <div class="metric-label">Global Markets</div>
