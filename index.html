@@ -1609,8 +1609,9 @@
             document.getElementById(pageId).classList.add('active');
 
             if (_poppingState) {
-                // Restore saved scroll position when going back/forward
-                window.scrollTo(0, _scrollPositions[pageId] || 0);
+                // Restore saved scroll position after browser has rendered the page
+                const savedY = _scrollPositions[pageId] || 0;
+                requestAnimationFrame(() => window.scrollTo(0, savedY));
             } else {
                 window.scrollTo(0, 0);
                 if (location.hash !== '#' + pageId) history.pushState(null, '', '#' + pageId);
