@@ -1595,13 +1595,24 @@
             cocacolasoccer: 'Coca-Cola Soccer'
         };
 
+        const _scrollPositions = {};
+
         function showPage(pageId) {
             document.querySelectorAll('video').forEach(v => { v.pause(); });
+
+            // Save scroll position of current page before leaving
+            const currentActive = document.querySelector('.page.active');
+            if (currentActive) _scrollPositions[currentActive.id] = window.scrollY;
+
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-            if (!_poppingState) {
+
+            if (_poppingState) {
+                // Restore saved scroll position when going back/forward
+                window.scrollTo(0, _scrollPositions[pageId] || 0);
+            } else {
+                window.scrollTo(0, 0);
                 if (location.hash !== '#' + pageId) history.pushState(null, '', '#' + pageId);
                 else history.replaceState(null, '', '#' + pageId);
             }
