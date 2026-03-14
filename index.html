@@ -1106,7 +1106,7 @@
 
         <div class="campaign-section">
             <h3>Influencer Strategy & Execution</h3>
-            <p>I developed and executed the influencer strategy, identifying creators across music, lifestyle, and fashion verticals to extend the reach of the Rosalía partnership. The campaign deployed tiered influencer activations that I managed from start to finish — from VIP seeding and exclusive event access to organic creator content — generating authentic enthusiasm across key markets globally. I also personally hosted 85 international influencers, leading them through a day's worth of planned activities and content creation in NYC.</p>
+            <p>I developed and executed the influencer strategy, identifying creators across music, lifestyle, and fashion verticals to extend the reach of the Rosalía partnership. I also coordinated event planning for the launch, personally hosting 85 international influencers through planned activities and content creation in NYC. The campaign deployed tiered influencer activations that I managed from start to finish — from VIP seeding and exclusive event access to organic creator content — generating authentic enthusiasm across key markets globally.</p>
             <div class="ise-video-grid">
                 <img src="content/coca-cola-move/cc-1.jpg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
                 <img src="content/coca-cola-move/cc-2.jpeg" style="width:100%; border-radius:8px; aspect-ratio:9/16; object-fit:cover; display:block;">
@@ -1636,7 +1636,7 @@
             if (_poppingState) {
                 // Restore saved scroll position after browser has rendered the page
                 const savedY = _scrollPositions[pageId] || 0;
-                requestAnimationFrame(() => window.scrollTo(0, savedY));
+                requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo(0, savedY)));
             } else {
                 window.scrollTo(0, 0);
                 if (location.hash !== '#' + pageId) history.pushState(null, '', '#' + pageId);
